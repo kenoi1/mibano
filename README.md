@@ -7,28 +7,28 @@
 2. cd mibano
 3. download [pytorch](https://pytorch.org/get-started/locally/)
 4. `pip -r requirements.txt`
-# kenoibob Commands:\n
-## General\n
-> **general commands for chatting with kenoibob!**\n
-> *`?help`* - show this message\n'> *`?speaking`* - show current speaker\n
-> *`?switch <speaker>`* - switch speaker from: {valid_speakers}\n
-> *`?say <text>`* - uses current voice to speak\n
-> *`?ai <text>`* - generates response and speaks it with current voice\n
+# mibano Commands:
+## General
+> **general commands for chatting with kenoibob!**
+> *`?help`* - show this message\n'> *`?speaking`* - show current speaker
+> *`?switch <speaker>`* - switch speaker from: {valid_speakers}
+> *`?say <text>`* - uses current voice to speak
+> *`?ai <text>`* - generates response and speaks it with current voice
 
-## RVC Cover\n
-> **create covers of YouTube videos using voice conversion.**\n
-> *`?cover <speaker> <pitch> <start_time> <youtube_url>`* - cover a song using voice conversion\n'
-> *`?advcover <speaker> <pitch> <gain> <reverb> <start_time> <youtube_url>`* - ?cover but with more options\n
+## RVC Cover
+> **create covers of YouTube videos using voice conversion.**
+> *`?cover <speaker> <pitch> <start_time> <youtube_url>`* - cover a song using voice conversion
+> *`?advcover <speaker> <pitch> <gain> <reverb> <start_time> <youtube_url>`* - ?cover but with more options
 
-> **Parameters**\n
-# '> **variables for tweaking settings of covers.** \n'
-> `speaker = {valid_speakers} (string).` Specifies speaker to sing with\n
-> `pitch = (integer -72 to ~72).` Specifies pitch in semitones to sing with\n
-> `gain = (float, 0 to ~30).` Specifies gain adjust in dB of singing\n
-> `reverb = (float 0 to 100).` Specifies reverb % mix \n
-> `start_time = (integer 0 to duration-45s).` Specifies start time in seconds of song\n
+> **Parameters**
+'> **variables for tweaking settings of covers.** 
+> `speaker = {valid_speakers} (string).` Specifies speaker to sing with
+> `pitch = (integer -72 to ~72).` Specifies pitch in semitones to sing with
+> `gain = (float, 0 to ~30).` Specifies gain adjust in dB of singing
+> `reverb = (float 0 to 100).` Specifies reverb % mix 
+> `start_time = (integer 0 to duration-45s).` Specifies start time in seconds of song
 
 ## Work in Progress\n
-> **broken code, use at own risk.** \n
-> `?talk` - start listening to your voice channel and talks to you in the current voice ***unfinished***\n
-> `?stop` - stops ?talk ***unfinished***\n
+> **broken code, use at own risk.** 
+> `?talk` - start listening to your voice channel and talks to you in the current voice ***unfinished***
+> `?stop` - stops ?talk ***unfinished***
