@@ -5,8 +5,9 @@
 # How to run locally (quick start)
 1. download [RVC-WebUI Project](https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/tree/main)
 2. cd mibano
-3. download [pytorch](https://pytorch.org/get-started/locally/)
+3. download your version of [pytorch](https://pytorch.org/get-started/locally/)
 4. `pip -r requirements.txt`
+5. add environment variables to .env (OPEN_AI_KEY=, DISCORD_TOKEN=, RVC-PATH=,)
 # mibano Commands:
 ## General
 > **general commands for chatting with kenoibob!**
