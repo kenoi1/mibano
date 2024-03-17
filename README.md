@@ -9,6 +9,7 @@
 4. `pip -r requirements.txt`
 5. add environment variables to .env (OPEN_AI_KEY=, DISCORD_TOKEN=, RVC-PATH=,)
 # mibano bot commands:
+![mibano](https://cdn.discordapp.com/avatars/125173755071692800/76512edda143a3145f3d154de5295a62.webp?size=160)
 ## General
 **general commands for chatting with kenoibob!**
 
