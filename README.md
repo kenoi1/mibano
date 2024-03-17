@@ -3,7 +3,7 @@
 ### you can use it by adding the bot to your server or running locally!
 ### note: requires openai credits for local running
 # How to run locally (quick start)
-1. download {RVC-WebUI Project](https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/tree/main)
+1. download [RVC-WebUI Project](https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/tree/main)
 2. cd mibano
 3. download [pytorch](https://pytorch.org/get-started/locally/)
 4. `pip -r requirements.txt`
