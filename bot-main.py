@@ -80,7 +80,7 @@ async def on_ready():
     await bot.change_presence(activity=discord.Game(name="?help for commands"))
 @bot.command()
 async def help(ctx):
-    embed = discord.Embed(title="kenoibob", description="rvc discord bot by kenyoy", color=discord.Color.brand_green())
+    embed = discord.Embed(title="mibano", description="rvc discord bot by kenyoy", color=discord.Color.brand_green())
 
     embed.add_field(name="special thanks", value=" Seshupengin-san, espided, and koitu da mod for tech support", inline=True)
     embed.add_field(name="~works:", value=" 2024-02-24 - ~", inline=False)
@@ -88,10 +88,10 @@ async def help(ctx):
 
     await ctx.send(embed=embed)
     await ctx.send(
-    '# kenoibob Commands:\n'
+    '# mibano Commands:\n'
     ''
     '## General\n'
-    '> **general commands for chatting with kenoibob!**\n'
+    '> **general commands for chatting with mibano!**\n'
     '> *`?help`* - show this message\n'
     '> *`?speaking`* - show current speaker\n'
     f'> *`?switch <speaker>`* - switch speaker from: {valid_speakers}\n'
@@ -133,7 +133,7 @@ async def parse_name(ctx, name, isCover):
         speaker_name = "Ai Hoshino"
         speaker_pitch = 12
         speaker_language = "japanese"
-        speaker_prompt = f"You are a kawaii {speaker_language} idol. You are {speaker_name} from Oshi No Ko, you will always responds as {speaker_name}. Please talk in !!exclusively!! only kawaii {speaker_language} language. "
+        speaker_prompt = f"You are a kawaii {speaker_language} idol. You are {speaker_name} '星野アイ' from Oshi No Ko, you will always responds as {speaker_name}. Please talk in !!exclusively!! only kawaii {speaker_language} language. "
     elif (name == "gawrgura"):
         speaker_file = "GawrGura_Sing.pth"
         speaker_name = "Gawr Gura"
@@ -609,7 +609,7 @@ async def convert_prompt(message_buffer):
         else: #user message, other bots will be included as speaker
             gpt_context.append({"role": "user", "content": f'user "{split[1]}" says "{split[2]}"'})
 
-    gpt_context.append({"role": "system", "content": await translator(f"Please respond to the last message sent using the context provided. Please speak only in {speaker_language} and in raw message content (without any dialogue roles or quotation marks)", speaker_language)})
+    gpt_context.append({"role": "system", "content": await translator(f"Please respond to the last message sent using the context provided. Please speak only in {speaker_language} and in raw message content (without any dialogue roles or quotation marks) and do not repeat messages that you have previously sent.", speaker_language)})
     print(colored("Prompt Context:" + str(gpt_context), "yellow"))
     return gpt_context
 
@@ -650,12 +650,12 @@ def speech_convert(speech_file_path):
     except Exception as e: # server is down probably vram
         print(e)
         return "error"
-
+# {RVC_PATH}/assets/uvr5_weights/hoshino added_IVF337_Flat_nprobe_1_v2.index
     result = client_RVC.predict(
         0,	# float (numeric value between 0 and 2333) in 'Select Speaker/Singer ID:' Slider component
         str(speech_file_path),	# str  in 'Enter the path of the audio file to be processed (default is the correct format example):' Textbox component
         speaker_pitch,	# float  in 'Transpose (integer, number of semitones, raise by an octave: 12, lower by an octave: -12):' Number component
-        f"{RVC_PATH}/assets/uvr5_weights/hoshino added_IVF337_Flat_nprobe_1_v2.index", # str (filepath on your computer (or URL) of file) in 'F0 curve file (optional). One pitch per line. Replaces the default F0 and pitch modulation:' File component
+        f"/home/derek/VSProjects/2024-02-24 Retrieval-based-Voice-Conversion-WebUI-main/assets/uvr5_weights/hoshino added_IVF337_Flat_nprobe_1_v2.index", # str (filepath on your computer (or URL) of file) in 'F0 curve file (optional). One pitch per line. Replaces the default F0 and pitch modulation:' File component
         "rmvpe",	# str  in 'Select the pitch extraction algorithm ('pm': faster extraction but lower-quality speech; 'harvest': better bass but extremely slow; 'crepe': better quality but GPU intensive), 'rmvpe': best quality, and little GPU requirement' Radio component
         "",	# str  in 'Path to the feature index file. Leave blank to use the selected result from the dropdown:' Textbox component
         "",	# str (Option from: ['logs/bratishkin.index', 'logs/evelon.index', 'logs/jesusavgn.index', 'logs/kussia.index', 'logs/mazellov.index', 'logs/zolo.index', 'logs/zubarev.index']) in 'Auto-detect index path and select from the dropdown:' Dropdown component
@@ -800,7 +800,6 @@ async def once_done(sink: discord.sinks, channel: discord.TextChannel, *args):  
                 speech_gen_file = str(speech_gen(botResponse)) # GPT
                 rvc_audio_path = str(speech_convert(speech_gen_file)) # RVC
                 rvc_audio = AudioSegment.from_wav(rvc_audio_path) # covert mp3 to wav
-                speech_convert_file ="/home/derek/VSProjects/input_audio/response.mp3"
                 rvc_audio.export(speech_convert_file, format="mp3", bitrate="320k")
 
                 print("File: " + speech_convert_file)
