@@ -6,3 +6,4 @@ todo 2024-04-07:
 - swap openai w coqui voice
 - llama prompt
 - upgrade vocal remover
+- ?isolate command
