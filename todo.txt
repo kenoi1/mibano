@@ -1,3 +1,5 @@
+started 2024-02-24 ~ -
+
 todo 2024-04-07:
 - fix backing pitcher
 - organize code lol
