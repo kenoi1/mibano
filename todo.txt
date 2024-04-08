@@ -1,0 +1,6 @@
+todo 2024-04-07:
+- fix backing pitcher
+- organize code lol
+- swap openai w coqui voice
+- llama prompt
+- upgrade vocal remover
