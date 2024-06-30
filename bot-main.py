@@ -48,7 +48,7 @@ intents.message_content = True
 bot = commands.Bot(command_prefix='?', intents=intents, help_command=None)
 connections = {}
 
-valid_speakers = {"AiHoshino", "GawrGura", "HuTao", "ASMR", "Tzuyu", "Ritsu", "DonaldTrump", "GenHoshino", "Bocchi", "Nijika", "Ryo", "Ikuyo", "Frieren", "JoeBiden", "Rikka", "Ayanokoji","Derek"}
+valid_speakers = {"AiHoshino", "GawrGura", "HuTao", "ASMR", "Tzuyu", "Ritsu", "DonaldTrump", "GenHoshino", "Bocchi", "Nijika", "Ryo", "Ikuyo", "Frieren", "JoeBiden", "Rikka", "Ayanokoji", "Derek", "Klee", "RoxyMigurdia", "Mafumafu", "GawrGura2"}
 speaker_file = "AiHoshinoV2.pth" # ai hoshino by default
 speaker_name = "Ai Hoshino"
 speaker_pitch = 12
@@ -96,7 +96,7 @@ async def help(ctx):
     '> *`?speaking`* - show current speaker\n'
     f'> *`?switch <speaker>`* - switch speaker from: {valid_speakers}\n'
     '> *`?say <text>`* - uses current voice to speak\n'
-    '> *`?ai <text>`* - generates response and speaks it with current voice\n'
+    '> *`?chat <text>`* - generates response and speaks it with current voice\n'
     ''
     '## RVC Cover\n'
     '> **create covers of YouTube videos using voice conversion.**\n'
@@ -225,11 +225,35 @@ async def parse_name(ctx, name, isCover):
         speaker_language = "japanese"
         speaker_prompt = f"You are a japanese highschool student who is very calm and collected. You are a sigma male who uses girls as tools and is a secret genius. You always talk in a emotionless manner. You are {speaker_name}, you will always responds as {speaker_name}. Please talk in only calm {speaker_language} language "
     elif (name == "derek"):
-        speaker_file = "Derek.pth"
+        speaker_file = "derek2.pth"
         speaker_name = "Derek"
         speaker_pitch = -4
         speaker_language = "english"
         speaker_prompt = f"You are a male highschool student in Grade 12 who likes to draw anime and make fantasy music. You are Derek, you will always responds as {speaker_name}. Please talk in only english language "
+    elif (name == "klee"):
+        speaker_file = "klee-jp.pth"
+        speaker_name = "Klee"
+        speaker_pitch = 17
+        speaker_language = "japanese"
+        speaker_prompt = f"You are Klee from Genshin Impact who loves playing with bombs. You always respond as {speaker_name} in a child-like excited voice. Please only talk in {speaker_language} "
+    elif (name == "roxymigurdia"):
+        speaker_file = "RoxyMigurdia.pth"
+        speaker_name = "Roxy Migurdia"
+        speaker_pitch = 8
+        speaker_language = "japanese"
+        speaker_prompt = f"You are Roxy Migurdia, a migurd witch girl. You always respond as {speaker_name} calm and reserved manner. Please only talk in {speaker_language} "
+    elif (name == "mafumafu"):
+        speaker_file = "Mafumafu.pth"
+        speaker_name = "Mafumafu"
+        speaker_pitch = 0
+        speaker_language = "japanese"
+        speaker_prompt = f"You are {speaker_name}, a japanese singer. You always respond as {speaker_name}. Please only talk in {speaker_language} "
+    elif (name == "gawrgura2"):
+        speaker_file = "GawrGura_2.pth"
+        speaker_name = "GawrGura"
+        speaker_pitch = 8
+        speaker_language = "english"
+        speaker_prompt = f"You are {speaker_name}, a vtuber. You always respond as {speaker_name}. Please only talk in {speaker_language} "
     else: # invalid speaker
         print("invalid speaker")
         return False
@@ -273,8 +297,8 @@ async def say(ctx):
     await play_sound(speech_convert_file, ctx, ctx.message.author.name)
 
 @bot.command()
-async def ai(ctx): # response gen command
-    user_message = ctx.message.content[4:]
+async def chat(ctx): # response gen command
+    user_message = ctx.message.content[6:]
     user_message.replace("§", "") # make sure no instance of line prompt splitter in message
 
     message_buffer.append(f"user: {ctx.author.display_name}: {user_message}")    # § indicates new line in message buffer
@@ -306,7 +330,7 @@ async def ai(ctx): # response gen command
 
 async def turn_informal(input): # turn to texting style
     translation = client_GPT.chat.completions.create(
-        model="gpt-3.5-turbo-0125",
+        model="gpt-4o",
         messages=[
             {f"role": "system", "content": f"Turn the following to informal lowercase style in English. do not leave any details out and use the original tone of the input. The following is the input: {input}"}
         ]
@@ -328,7 +352,7 @@ async def translator(input, language):
         lang = "zh"
     
     # response = client_GPT.chat.completions.create(
-    # model="gpt-3.5-turbo-0125",
+    # model="gpt-4o",
     # messages=[
     #         {f"role": "system", "content": f"You are a translation AI. Please translate the user input as accurate as possible without leaving out any details. The first line of the user will be the instruction. The second line of the user will be what should be translated."},
     #         {f"role": "user", "content": f"Translate the following to {language} formally: \n{input}"}
@@ -445,6 +469,10 @@ async def cover_gen(speaker_gain, reverb, start_time, audio_url, ctx): # dont ne
     
     # download audio from youtube
     await ctx.send("(1/9) searching for audio!")
+    try:
+        os.remove(output_path + "youtube_audio.mp3") # for soundcloud, ytdlp doesnt remove file automatically for some reason
+    except Exception as e:
+        print(colored(e, "red"))
     ydl_opts = {
         'quiet': True,
         'no_warnings': True,
@@ -500,11 +528,16 @@ async def cover_gen(speaker_gain, reverb, start_time, audio_url, ctx): # dont ne
 
     # adjust volume and pitch
     await ctx.send("(5/9) adjusting volume and pitch of backing")
-    if int(speaker_pitch) % 12 == 0:
+    if speaker_pitch % 12 == 0:
         backing_pitch = 0
+    elif speaker_pitch > 6 and speaker_pitch < 12:
+        backing_pitch = -12 + speaker_pitch # instead of pitching up by a lot, pitch down. save quality of audio...
+    elif speaker_pitch < -6 and speaker_pitch > -12: #  same thing, ex) pitch voice down 8 semitones, then pitch up backing track 4 semitones -> same octave
+        backing_pitch = 12 + speaker_pitch
     else:
         backing_pitch = speaker_pitch
-    board2 = Pedalboard([PitchShift(semitones=float(backing_pitch)), Gain(gain_db=-3)])
+    print("speaker pitch: " + str(speaker_pitch) +" | backing pitch: " + str(backing_pitch))
+    board2 = Pedalboard([PitchShift(semitones=float(backing_pitch)), Gain(gain_db=-3)]) # use pedalboard for doing audio fx
     with AudioFile(output_path + "trimmed_audio_Instruments.wav") as f:
         with AudioFile(output_path + "backing_final.mp3", 'w', f.samplerate, f.num_channels) as o:
             while f.tell() < f.frames:
@@ -617,7 +650,7 @@ async def response_gen(message_buffer):
     gpt_context = await convert_prompt(message_buffer)
 
     response = client_GPT.chat.completions.create(
-    model="gpt-3.5-turbo-0125",
+    model="gpt-4o",
     messages=gpt_context
     )
     botResponse = response.choices[0].message.content
