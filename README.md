@@ -12,6 +12,7 @@
 5. `pip install -r requirements.txt`
 6. add environment variables to .env (OPENAI_API_KEY="", DISCORD_TOKEN="", RVC-PATH="*rvc-folder-name*",)
 7. `python bot-main.py`
+8. 
 additional note:
 - may need to add baseline.pth to vocal-remover assets
 - may need to reference an index for rvc rendering
