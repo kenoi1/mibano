@@ -4,10 +4,12 @@
 ### note: requires openai credits for local running
 # How to run locally (quick start)
 1. download [RVC-WebUI Project](https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/tree/main)
-2. cd mibano
-3. download your version of [pytorch](https://pytorch.org/get-started/locally/)
-4. `pip -r requirements.txt`
-5. add environment variables to .env (OPEN_AI_KEY=, DISCORD_TOKEN=, RVC-PATH=,)
+2. change directory to mibano `cd ~/mibano`
+   - `python3.10 -m venv venv`
+   - `source venv/bin/activate`
+4. download your version of [pytorch](https://pytorch.org/get-started/locally/)
+5. `pip -r requirements.txt`
+6. add environment variables to .env (OPEN_AI_KEY=, DISCORD_TOKEN=, RVC-PATH=,)
 # mibano bot commands:
 ![mibano](https://cdn.discordapp.com/avatars/125173755071692800/76512edda143a3145f3d154de5295a62.webp?size=160)
 ## General
