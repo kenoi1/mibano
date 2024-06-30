@@ -12,6 +12,10 @@
 5. `pip install -r requirements.txt`
 6. add environment variables to .env (OPENAI_API_KEY="", DISCORD_TOKEN="", RVC-PATH="*rvc-folder-name*",)
 7. `python bot-main.py`
+additional note:
+- may need to add baseline.pth to vocal-remover assets
+- may need to reference an index for rvc rendering
+- change path in cover generation
 # mibano bot commands:
 ![mibano](https://cdn.discordapp.com/avatars/125173755071692800/76512edda143a3145f3d154de5295a62.webp?size=160)
 ## General
