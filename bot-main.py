@@ -48,7 +48,7 @@ intents.message_content = True
 bot = commands.Bot(command_prefix='?', intents=intents, help_command=None)
 connections = {}
 
-valid_speakers = {"AiHoshino", "GawrGura", "HuTao", "ASMR", "Tzuyu", "Ritsu", "DonaldTrump", "GenHoshino", "Bocchi", "Nijika", "Ryo", "Ikuyo", "Frieren", "JoeBiden", "Rikka", "Ayanokoji", "Derek", "Klee", "RoxyMigurdia", "Mafumafu", "GawrGura2"}
+valid_speakers = {"AiHoshino", "GawrGura", "HuTao", "ASMR", "Tzuyu", "Ritsu", "DonaldTrump", "GenHoshino", "Bocchi", "Nijika", "Ryo", "Ikuyo", "Frieren", "JoeBiden", "Rikka", "Ayanokoji", "Derek", "Klee", "RoxyMigurdia", "Mafumafu", "GawrGura2", "Seshan"}
 speaker_file = "AiHoshinoV2.pth" # ai hoshino by default
 speaker_name = "Ai Hoshino"
 speaker_pitch = 12
@@ -254,6 +254,12 @@ async def parse_name(ctx, name, isCover):
         speaker_pitch = 8
         speaker_language = "english"
         speaker_prompt = f"You are {speaker_name}, a vtuber. You always respond as {speaker_name}. Please only talk in {speaker_language} "
+    elif (name == "seshan"):
+        speaker_file = "seshan.pth"
+        speaker_name = "Seshan"
+        speaker_pitch = -1
+        speaker_language = "english"
+        speaker_prompt = f"You are {speaker_name}, an unemployed homeless man. You always respond as {speaker_name}. Please only talk in depressing {speaker_language} "
     else: # invalid speaker
         print("invalid speaker")
         return False
@@ -548,7 +554,7 @@ async def cover_gen(speaker_gain, reverb, start_time, audio_url, ctx): # dont ne
     # RVC
     await ctx.send(f"(6/9) rvc conversion to {speaker_file} waha (up to ~30s)")
     
-    speech_convert_file = speech_convert("../2024-02-24 kenoibob RVC" + output_path[1:] + "trimmed_audio_Vocals.wav") # RVC webui is accessing this folder, must be from parent folder
+    speech_convert_file = speech_convert("../mibano" + output_path[1:] + "trimmed_audio_Vocals.wav") # RVC webui is accessing this folder, must be from parent folder
     if speech_convert_file == "error": # rvc failed
         await ctx.send("error: voice conversion failed.. *probably out of vram*. `please message kenyoy to restart server.`")
         reset_speaker()
@@ -688,7 +694,7 @@ def speech_convert(speech_file_path):
         0,	# float (numeric value between 0 and 2333) in 'Select Speaker/Singer ID:' Slider component
         str(speech_file_path),	# str  in 'Enter the path of the audio file to be processed (default is the correct format example):' Textbox component
         speaker_pitch,	# float  in 'Transpose (integer, number of semitones, raise by an octave: 12, lower by an octave: -12):' Number component
-        f"/home/derek/VSProjects/2024-02-24 Retrieval-based-Voice-Conversion-WebUI-main/assets/uvr5_weights/hoshino added_IVF337_Flat_nprobe_1_v2.index", # str (filepath on your computer (or URL) of file) in 'F0 curve file (optional). One pitch per line. Replaces the default F0 and pitch modulation:' File component
+        None, # str (filepath on your computer (or URL) of file) in 'F0 curve file (optional). One pitch per line. Replaces the default F0 and pitch modulation:' File component
         "rmvpe",	# str  in 'Select the pitch extraction algorithm ('pm': faster extraction but lower-quality speech; 'harvest': better bass but extremely slow; 'crepe': better quality but GPU intensive), 'rmvpe': best quality, and little GPU requirement' Radio component
         "",	# str  in 'Path to the feature index file. Leave blank to use the selected result from the dropdown:' Textbox component
         "",	# str (Option from: ['logs/bratishkin.index', 'logs/evelon.index', 'logs/jesusavgn.index', 'logs/kussia.index', 'logs/mazellov.index', 'logs/zolo.index', 'logs/zubarev.index']) in 'Auto-detect index path and select from the dropdown:' Dropdown component
