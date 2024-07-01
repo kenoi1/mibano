@@ -11,8 +11,9 @@
 4. download your version of [pytorch](https://pytorch.org/get-started/locally/)
 5. `pip install -r requirements.txt`
 6. add environment variables to .env (OPENAI_API_KEY="", DISCORD_TOKEN="", RVC-PATH="*rvc-folder-name*",)
-7. `python bot-main.py`
-8. 
+7. add [baseline.pth]([url](https://drive.google.com/file/d/1g69m_oAjJFBHnCW5nHLBPi5RgICVgPbe/view?usp=sharing)) to mibano/vocal-remover/models
+8. `python bot-main.py`
+   
 additional note:
 - may need to add baseline.pth to vocal-remover assets
 - may need to reference an index for rvc rendering
