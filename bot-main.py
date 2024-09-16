@@ -53,7 +53,7 @@ speaker_file = "AiHoshinoV2.pth" # ai hoshino by default
 speaker_name = "Ai Hoshino"
 speaker_pitch = 12
 speaker_language = "japanese"
-speaker_prompt = f"You are a kawaii japanese idol. You are {speaker_name} from Oshi No Ko, you will always responds as {speaker_name}. Please talk in kawaii {speaker_language} "
+speaker_prompt = f"You are idol. You are {speaker_name} from Oshi No Ko, you will always responds as {speaker_name}. Please talk in kawaii {speaker_language} "
 
 prev_speaker_name = speaker_name
 prev_speaker_pitch = speaker_pitch # used for song covers as the global variables should be reset after the song is done
@@ -133,13 +133,19 @@ async def parse_name(ctx, name, isCover):
         speaker_name = "Ai Hoshino"
         speaker_pitch = 12
         speaker_language = "japanese"
-        speaker_prompt = f"You are a kawaii {speaker_language} idol. You are {speaker_name} '星野アイ' from Oshi No Ko, you will always responds as {speaker_name}. Please talk in exclusively only kawaii {speaker_language} language. "
+        speaker_prompt = f"You are a {speaker_language} idol. You are {speaker_name} '星野アイ' from Oshi No Ko, you will always responds as {speaker_name}. Please talk in exclusively only kawaii {speaker_language} language. "
+    elif (name == "donaldtrump"):
+        speaker_file = "donaldtrumplowenergy.pth"
+        speaker_name = "Donald J. Trump"
+        speaker_pitch = -4
+        speaker_language = "english"
+        speaker_prompt = f"You are the victim of a stolen election and president of the united states. You are Donald Trump, you will always responds as {speaker_name}. Please talk in english language "
     elif (name == "gawrgura"):
         speaker_file = "GawrGura_Sing.pth"
         speaker_name = "Gawr Gura"
         speaker_pitch = 12
         speaker_language = "english"
-        speaker_prompt = f"You are a kawaii VTuber shark girl. You are Gawr Gura from HoloLive, you will always responds as {speaker_name}. Please talk in only kawaii {speaker_language} language "
+        speaker_prompt = f"You are a VTuber shark. You are Gawr Gura from HoloLive, you will always responds as {speaker_name}. Please talk in only kawaii {speaker_language} language "
     elif (name == "hutao"):
         speaker_file = "HuTao.pth"
         speaker_name = "Hu Tao"
@@ -151,25 +157,19 @@ async def parse_name(ctx, name, isCover):
         speaker_name = "ASMR"
         speaker_pitch = 0
         speaker_language = "english"
-        speaker_prompt = f"You are a who is great at asmr, you will always responds as {speaker_name}. Please talk in only seductive {speaker_language} language"
+        speaker_prompt = f"You  is great at asmr, you will always responds as {speaker_name}. Please talk in only seductive {speaker_language} language"
     elif (name == "tzuyu"):
         speaker_file = "TzuyuDiosa.pth"
         speaker_name = "Chou Tzu-yu"
         speaker_pitch = 5
         speaker_language = "korean"
-        speaker_prompt = f"You are a taiwanese idol. You are Chou Tzu-yu, known mononymously as Tzuyu, is a Taiwanese singer based in South Korea. She is a member of the South Korean girl group Twice, you will always responds as {speaker_name}. Please talk in only {speaker_language} language"
+        speaker_prompt = f" You are Chou Tzu-yu, known mononymously as Tzuyu, is a Taiwanese singer based in South Korea. She is a member of the South Korean girl group Twice, you will always responds as {speaker_name}. Please talk in only {speaker_language} language"
     elif (name == "ritsu"):
         speaker_file = "TainakaRitsu.pth"
         speaker_name = "Tainaka Ritsu"
         speaker_pitch = 8
         speaker_language = "japanese"
         speaker_prompt = f"You are a highschool student who is a part of a rock band. You are Tainaka Ritsu from K-On, you will always responds as {speaker_name}. Please do not talk in english and talk in only {speaker_file} "
-    elif (name == "donaldtrump"):
-        speaker_file = "donaldtrumplowenergy.pth"
-        speaker_name = "Donald J. Trump"
-        speaker_pitch = -4
-        speaker_language = "english"
-        speaker_prompt = f"You are the victim of a stolen election and president of the united states. You are Donald Trump, you will always responds as {speaker_name}. Please talk in english language "
     elif (name == "genhoshino"):
         speaker_file = "GenHoshino.pth"
         speaker_name = "Gen Hoshino"
