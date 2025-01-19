@@ -1,5 +1,5 @@
 # mibano - RVC Discord Bot
-### discord bot for texting, chatting, and creating covers with favourite characters using retrieval-based voice conversion.
+### discord bot for texting, talking, and creating covers with favourite characters using retrieval-based voice conversion.
 ### you can use it by adding the bot to your server or running locally!
 ### note: requires openai credits for local running
 # How to run locally (quick start)
