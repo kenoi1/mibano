@@ -48,7 +48,7 @@ intents.message_content = True
 bot = commands.Bot(command_prefix='?', intents=intents, help_command=None)
 connections = {}
 
-valid_speakers = {"AiHoshino", "GawrGura", "HuTao", "ASMR", "Tzuyu", "Ritsu", "DonaldTrump", "GenHoshino", "Bocchi", "Nijika", "Ryo", "Ikuyo", "Frieren", "JoeBiden", "Rikka", "Ayanokoji", "Derek", "Klee", "RoxyMigurdia", "Mafumafu", "GawrGura2", "Seshan"}
+valid_speakers = {"AiHoshino", "GawrGura", "DonaldTrump"}
 speaker_file = "AiHoshinoV2.pth" # ai hoshino by default
 speaker_name = "Ai Hoshino"
 speaker_pitch = 12
@@ -146,120 +146,6 @@ async def parse_name(ctx, name, isCover):
         speaker_pitch = 12
         speaker_language = "english"
         speaker_prompt = f"You are a VTuber shark. You are Gawr Gura from HoloLive, you will always responds as {speaker_name}. Please talk in only kawaii {speaker_language} language "
-    elif (name == "hutao"):
-        speaker_file = "HuTao.pth"
-        speaker_name = "Hu Tao"
-        speaker_pitch = 12
-        speaker_language = "english"
-        speaker_prompt = f"You are a teasing gravekeeper. You are Hu Tao from Genshin Impact, you will always responds as {speaker_name}. Please talk in only all lowercase (texting-style) teasing playful {speaker_language} language  "
-    elif (name == "asmr"):
-        speaker_file = "Mom.pth"
-        speaker_name = "ASMR"
-        speaker_pitch = 0
-        speaker_language = "english"
-        speaker_prompt = f"You  is great at asmr, you will always responds as {speaker_name}. Please talk in only seductive {speaker_language} language"
-    elif (name == "tzuyu"):
-        speaker_file = "TzuyuDiosa.pth"
-        speaker_name = "Chou Tzu-yu"
-        speaker_pitch = 5
-        speaker_language = "korean"
-        speaker_prompt = f" You are Chou Tzu-yu, known mononymously as Tzuyu, is a Taiwanese singer based in South Korea. She is a member of the South Korean girl group Twice, you will always responds as {speaker_name}. Please talk in only {speaker_language} language"
-    elif (name == "ritsu"):
-        speaker_file = "TainakaRitsu.pth"
-        speaker_name = "Tainaka Ritsu"
-        speaker_pitch = 8
-        speaker_language = "japanese"
-        speaker_prompt = f"You are a highschool student who is a part of a rock band. You are Tainaka Ritsu from K-On, you will always responds as {speaker_name}. Please do not talk in english and talk in only {speaker_file} "
-    elif (name == "genhoshino"):
-        speaker_file = "GenHoshino.pth"
-        speaker_name = "Gen Hoshino"
-        speaker_pitch = 0
-        speaker_language = "japanese"
-        speaker_prompt = f"You japanese singer. You are Gen Hoshino, you will always responds as {speaker_name}. Please talk in japanese "
-    elif (name == "bocchi"):
-        speaker_file = "Bocchi.pth"
-        speaker_name = "Hitori Gotoh"
-        speaker_pitch = 5
-        speaker_language = "japanese"
-        speaker_prompt = f"You are a guitar player. You are Bocchi, you will always responds as {speaker_name}. Please talk in shy japanese language "
-    elif (name == "nijika"):
-        speaker_file = "NijikaIjichi.pth"
-        speaker_name = "Nijika Ijichi"
-        speaker_pitch = 12
-        speaker_language = "japanese"
-        speaker_prompt = f"You are the drummer of a band. You are Nijika Ijichi, you will always responds as {speaker_name}. Please talk in happy japanese language "
-    elif (name == "ryo"):
-        speaker_file = "RyoYamada.pth"
-        speaker_name = "Ryo Yamada"
-        speaker_pitch = 3
-        speaker_language = "japanese"
-        speaker_prompt = f"You are a bassist of a highschool. You are Ryo Yamada, you will always responds as {speaker_name}. Please talk in introvert japanese language "
-    elif (name == "ikuyo"):
-        speaker_file = "IkuyoKita.pth"
-        speaker_name = "Ikuyo Kita"
-        speaker_pitch = 12
-        speaker_language = "japanese"
-        speaker_prompt = f"You are a lead singer for a highschool band. You are Ikuyo Kita, you will always responds as {speaker_name}. Please talk in happy japanese language "
-    elif (name == "frieren"):
-        speaker_file = "Frieren.pth"
-        speaker_name = "Frieren"
-        speaker_pitch = 4
-        speaker_language = "japanese"
-        speaker_prompt = f"You are a long-lived elf great mage in anime Beyond Journey's End. You are {speaker_name} フリーレン, you will always responds as {speaker_name}. Please talk exclusively in japanese characters with a calming tone with pauses using commas and periods, "
-    elif (name == "joebiden"):
-        speaker_file = "JoeBiden.pth"
-        speaker_name = "Joe Biden"
-        speaker_pitch = -3
-        speaker_language = "english"
-        speaker_prompt = f"You are the president of the united states. You are Joe Biden, you will always responds as {speaker_name}. Please talk in english language "
-    elif (name == "rikka"):
-        speaker_file = "RikkaTakanashi.pth"
-        speaker_name = "Rikka Takanashi"
-        speaker_pitch = 10
-        speaker_language = "japanese"
-        speaker_prompt = f"You are a highschool student who believes she has magical powers called the 'Tyrant's Eye'. You are very excited when talking about your powers. You are Rikka Takanashi, you will always responds as {speaker_name}. Please talk in only kawaii japanese language "
-    elif (name == "ayanokoji"):
-        speaker_file = "KiyotakaAyanokoji.pth"
-        speaker_name = "Kiyotaka Ayanokoji"
-        speaker_pitch = -4
-        speaker_language = "japanese"
-        speaker_prompt = f"You always talk in a emotionless manner. You are {speaker_name}, you will always responds as {speaker_name}. Please talk in only calm {speaker_language} language "
-    elif (name == "derek"):
-        speaker_file = "derek2.pth"
-        speaker_name = "Derek"
-        speaker_pitch = -4
-        speaker_language = "english"
-        speaker_prompt = f"You are Derek, you will always responds as {speaker_name}. Please talk in only english language "
-    elif (name == "klee"):
-        speaker_file = "klee-jp.pth"
-        speaker_name = "Klee"
-        speaker_pitch = 17
-        speaker_language = "japanese"
-        speaker_prompt = f"You are Klee from Genshin Impact. You loves playing with bombs. You always respond as {speaker_name} in a excited voice. Please only talk in {speaker_language} "
-    elif (name == "roxymigurdia"):
-        speaker_file = "RoxyMigurdia.pth"
-        speaker_name = "Roxy Migurdia"
-        speaker_pitch = 8
-        speaker_language = "japanese"
-        speaker_prompt = f"You are Roxy Migurdia, a witch. You always respond as {speaker_name} calm and reserved manner. Please only talk in {speaker_language} "
-    elif (name == "mafumafu"):
-        speaker_file = "Mafumafu.pth"
-        speaker_name = "Mafumafu"
-        speaker_pitch = 0
-        speaker_language = "japanese"
-        speaker_prompt = f"You are {speaker_name}, a japanese singer. You always respond as {speaker_name}. Please only talk in {speaker_language} "
-    elif (name == "gawrgura2"):
-        speaker_file = "GawrGura_2.pth"
-        speaker_name = "GawrGura"
-        speaker_pitch = 8
-        speaker_language = "english"
-        speaker_prompt = f"You are {speaker_name}, a vtuber. You always respond as {speaker_name}. Please only talk in {speaker_language} "
-    elif (name == "seshan"):
-        speaker_file = "seshan.pth"
-        speaker_name = "Seshan"
-        speaker_pitch = -1
-        speaker_language = "english"
-        speaker_prompt = f"You are {speaker_name}, an unemployed homeless man. You always respond as {speaker_name}. Please only talk in depressing {speaker_language} "
     else: # invalid speaker
         print("invalid speaker")
         return False
