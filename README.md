@@ -2,7 +2,7 @@
 ### discord bot for texting, talking, and creating covers with favourite characters using retrieval-based voice conversion.
 ### you can use it by adding the bot to your server or running locally!
 ### note: requires openai credits for local running
-# How to run locally (quick start)
+# Quick Start (local):
 1. download [RVC-WebUI Project](https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/tree/main)
 2. change directory to mibano and create virtual environment
    - `cd ~/mibano`
