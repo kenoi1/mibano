@@ -2,8 +2,8 @@
 ### discord bot for texting, talking, and creating covers with favourite characters using retrieval-based voice conversion.
 ### you can use it by adding the bot to your server or running locally!
 ### note: requires openai credits for local running
-TODO: demo video...
-# Setup Instructions (local):
+TODO: demo video, docker
+## Setup Instructions (local):
 1. download [RVC-WebUI Project](https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/tree/main)
 2. change directory to mibano and create virtual environment
    - `cd ~/mibano`
@@ -20,7 +20,7 @@ additional note:
 - may need to add baseline.pth to vocal-remover assets
 - may need to reference an index for rvc rendering
 - change path in cover generation
-# mibano bot commands:
+## mibano bot commands:
 ![mibano](https://cdn.discordapp.com/avatars/125173755071692800/76512edda143a3145f3d154de5295a62.webp?size=160)
 ## General
 **general commands for chatting with kenoibob!**
